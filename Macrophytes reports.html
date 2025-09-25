@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artrapporter</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex; 
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: #ffffff;
+            border-right: 1px solid #dee2e6;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        h1 { 
+            color: #343a40; 
+            margin-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #495057;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        li a:hover {
+            background-color: #e9ecef;
+        }
+        li a.active {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        .report-container {
+            flex-grow: 1;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            background-color: white;
+        }
+        .placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #6c757d;
+            font-size: 1.5em;
+            text-align: center;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h1>Artrapporter</h1>
+        <ul id="species-list">
+            <li><a href="#" onclick="showSpecies('Acrochaetium_secundatum', this)">Acrochaetium secundatum</a></li>
+            <li><a href="#" onclick="showSpecies('Acrosiphonia_arcta', this)">Acrosiphonia arcta</a></li>
+            <li><a href="#" onclick="showSpecies('Aegagropila_linnaei', this)">Aegagropila linnaei</a></li>
+            <li><a href="#" onclick="showSpecies('Agarophyton_vermiculophyl', this)">Agarophyton vermiculophyl</a></li>
+            <li><a href="#" onclick="showSpecies('Aglaothamnion_tenuissimum', this)">Aglaothamnion tenuissimum</a></li>
+            <li><a href="#" onclick="showSpecies('Ahnfeltia_plicata', this)">Ahnfeltia plicata</a></li>
+            <li><a href="#" onclick="showSpecies('Alisma_gramineum', this)">Alisma gramineum</a></li>
+            <li><a href="#" onclick="showSpecies('Alisma_plantago-aquatica', this)">Alisma plantago-aquatica</a></li>
+            <li><a href="#" onclick="showSpecies('Alisma_wahlenbergii', this)">Alisma wahlenbergii</a></li>
+            <li><a href="#" onclick="showSpecies('Apoglossum_ruscifolium', this)">Apoglossum ruscifolium</a></li>
+            <li><a href="#" onclick="showSpecies('Ascophyllum_nodosum', this)">Ascophyllum nodosum</a></li>
+            <li><a href="#" onclick="showSpecies('Asperococcus_bullosus', this)">Asperococcus bullosus</a></li>
+            <li><a href="#" onclick="showSpecies('Batrachospermum', this)">Batrachospermum</a></li>
+            <li><a href="#" onclick="showSpecies('Battersia_arctica', this)">Battersia arctica</a></li>
+            <li><a href="#" onclick="showSpecies('Bolboschoenus_maritimus', this)">Bolboschoenus maritimus</a></li>
+            <li><a href="#" onclick="showSpecies('Bonnemaisonia_asparagoide', this)">Bonnemaisonia asparagoide</a></li>
+            <li><a href="#" onclick="showSpecies('Bonnemaisonia_hamifera', this)">Bonnemaisonia hamifera</a></li>
+            <li><a href="#" onclick="showSpecies('Bryopsis_hypnoides', this)">Bryopsis hypnoides</a></li>
+            <li><a href="#" onclick="showSpecies('Bryopsis_plumosa', this)">Bryopsis plumosa</a></li>
+            <li><a href="#" onclick="showSpecies('Butomus_umbellatus', this)">Butomus umbellatus</a></li>
+            <li><a href="#" onclick="showSpecies('Callithamnion_corymbosum', this)">Callithamnion corymbosum</a></li>
+            <li><a href="#" onclick="showSpecies('Callithamnion_tetragonum', this)">Callithamnion tetragonum</a></li>
+            <li><a href="#" onclick="showSpecies('Callitriche_hermaphroditica', this)">Callitriche hermaphroditica</a></li>
+            <li><a href="#" onclick="showSpecies('Callitriche_palustris', this)">Callitriche palustris</a></li>
+            <li><a href="#" onclick="showSpecies('Caltha_palustris', this)">Caltha palustris</a></li>
+            <li><a href="#" onclick="showSpecies('Ceramium_diaphanum', this)">Ceramium diaphanum</a></li>
+            <li><a href="#" onclick="showSpecies('Ceramium_tenuicorne', this)">Ceramium tenuicorne</a></li>
+            <li><a href="#" onclick="showSpecies('Ceramium_virgatum', this)">Ceramium virgatum</a></li>
+            <li><a href="#" onclick="showSpecies('Ceratophyllum_demersum', this)">Ceratophyllum demersum</a></li>
+            <li><a href="#" onclick="showSpecies('Chaetomorpha_linum', this)">Chaetomorpha linum</a></li>
+            <li><a href="#" onclick="showSpecies('Chaetomorpha_melagonium', this)">Chaetomorpha melagonium</a></li>
+            <li><a href="#" onclick="showSpecies('Chaetopteris_plumosa', this)">Chaetopteris plumosa</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_aspera', this)">Chara aspera</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_baltica', this)">Chara baltica</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_braunii', this)">Chara braunii</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_canescens', this)">Chara canescens</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_connivens', this)">Chara connivens</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_globularis', this)">Chara globularis</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_horrida', this)">Chara horrida</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_tomentosa', this)">Chara tomentosa</a></li>
+            <li><a href="#" onclick="showSpecies('Chara_virgata', this)">Chara virgata</a></li>
+            <li><a href="#" onclick="showSpecies('Chondrus_crispus', this)">Chondrus crispus</a></li>
+            <li><a href="#" onclick="showSpecies('Chorda_filum', this)">Chorda filum</a></li>
+            <li><a href="#" onclick="showSpecies('Chordaria_flagelliformis', this)">Chordaria flagelliformis</a></li>
+            <li><a href="#" onclick="showSpecies('Cicuta_virosa', this)">Cicuta virosa</a></li>
+            <li><a href="#" onclick="showSpecies('Cladophora_fracta', this)">Cladophora fracta</a></li>
+            <li><a href="#" onclick="showSpecies('Cladophora_glomerata', this)">Cladophora glomerata</a></li>
+            <li><a href="#" onclick="showSpecies('Cladophora_rupestris', this)">Cladophora rupestris</a></li>
+            <li><a href="#" onclick="showSpecies('Coccotylus_Phyllophora', this)">Coccotylus Phyllophora</a></li>
+            <li><a href="#" onclick="showSpecies('Codium_fragile', this)">Codium fragile</a></li>
+            <li><a href="#" onclick="showSpecies('Corallina_officinalis', this)">Corallina officinalis</a></li>
+            <li><a href="#" onclick="showSpecies('Crassula_aquatica', this)">Crassula aquatica</a></li>
+            <li><a href="#" onclick="showSpecies('Cruoria_pellita', this)">Cruoria pellita</a></li>
+            <li><a href="#" onclick="showSpecies('Cystoclonium_purpureum', this)">Cystoclonium purpureum</a></li>
+            <li><a href="#" onclick="showSpecies('Dasya_baillouviana', this)">Dasya baillouviana</a></li>
+            <li><a href="#" onclick="showSpecies('Dasysiphonia_japonica', this)">Dasysiphonia japonica</a></li>
+            <li><a href="#" onclick="showSpecies('Delesseria_sanguinea', this)">Delesseria sanguinea</a></li>
+            <li><a href="#" onclick="showSpecies('Derbesia_marina', this)">Derbesia marina</a></li>
+            <li><a href="#" onclick="showSpecies('Desmarestia_aculeata', this)">Desmarestia aculeata</a></li>
+            <li><a href="#" onclick="showSpecies('Desmarestia_viridis', this)">Desmarestia viridis</a></li>
+            <li><a href="#" onclick="showSpecies('Dictyosiphon_chordaria', this)">Dictyosiphon chordaria</a></li>
+            <li><a href="#" onclick="showSpecies('Dictyosiphon_foeniculaceu', this)">Dictyosiphon foeniculaceu</a></li>
+            <li><a href="#" onclick="showSpecies('Dilsea_carnosa', this)">Dilsea carnosa</a></li>
+            <li><a href="#" onclick="showSpecies('Drepanocladus_aduncus', this)">Drepanocladus aduncus</a></li>
+            <li><a href="#" onclick="showSpecies('Dumontia_contorta', this)">Dumontia contorta</a></li>
+            <li><a href="#" onclick="showSpecies('Ectocarpus_Pylaiella', this)">Ectocarpus Pylaiella</a></li>
+            <li><a href="#" onclick="showSpecies('Elachista_fucicola', this)">Elachista fucicola</a></li>
+            <li><a href="#" onclick="showSpecies('Elatine_hydropiper', this)">Elatine hydropiper</a></li>
+            <li><a href="#" onclick="showSpecies('Eleocharis_acicularis', this)">Eleocharis acicularis</a></li>
+            <li><a href="#" onclick="showSpecies('Eleocharis_mamillata', this)">Eleocharis mamillata</a></li>
+            <li><a href="#" onclick="showSpecies('Eleocharis_palustris', this)">Eleocharis palustris</a></li>
+            <li><a href="#" onclick="showSpecies('Eleocharis_parvula', this)">Eleocharis parvula</a></li>
+            <li><a href="#" onclick="showSpecies('Eleocharis_uniglumis', this)">Eleocharis uniglumis</a></li>
+            <li><a href="#" onclick="showSpecies('Elodea_canadensis', this)">Elodea canadensis</a></li>
+            <li><a href="#" onclick="showSpecies('Elodea_nuttallii', this)">Elodea nuttallii</a></li>
+            <li><a href="#" onclick="showSpecies('Equisetum_fluviatile', this)">Equisetum fluviatile</a></li>
+            <li><a href="#" onclick="showSpecies('Erythrodermis_traillii', this)">Erythrodermis traillii</a></li>
+            <li><a href="#" onclick="showSpecies('Eudesme_virescens', this)">Eudesme virescens</a></li>
+            <li><a href="#" onclick="showSpecies('F_vesiculosus_F_radicans', this)">F vesiculosus F radicans</a></li>
+            <li><a href="#" onclick="showSpecies('Fissidens_fontanus', this)">Fissidens fontanus</a></li>
+            <li><a href="#" onclick="showSpecies('Fontinalis_antipyretica', this)">Fontinalis antipyretica</a></li>
+            <li><a href="#" onclick="showSpecies('Fontinalis_dalecarlica', this)">Fontinalis dalecarlica</a></li>
+            <li><a href="#" onclick="showSpecies('Fontinalis_hypnoides', this)">Fontinalis hypnoides</a></li>
+            <li><a href="#" onclick="showSpecies('Fucus_serratus', this)">Fucus serratus</a></li>
+            <li><a href="#" onclick="showSpecies('Furcellaria_lumbricalis', this)">Furcellaria lumbricalis</a></li>
+            <li><a href="#" onclick="showSpecies('Gaillona_rosea', this)">Gaillona rosea</a></li>
+            <li><a href="#" onclick="showSpecies('Halidrys_siliquosa', this)">Halidrys siliquosa</a></li>
+            <li><a href="#" onclick="showSpecies('Halosiphon_tomentosus', this)">Halosiphon tomentosus</a></li>
+            <li><a href="#" onclick="showSpecies('Heterosiphonia_plumosa', this)">Heterosiphonia plumosa</a></li>
+            <li><a href="#" onclick="showSpecies('Hildenbrandia_rubra', this)">Hildenbrandia rubra</a></li>
+            <li><a href="#" onclick="showSpecies('Hippuris_tetraphylla', this)">Hippuris tetraphylla</a></li>
+            <li><a href="#" onclick="showSpecies('Hippuris_vulgaris', this)">Hippuris vulgaris</a></li>
+            <li><a href="#" onclick="showSpecies('Isoëtes_echinospora', this)">Isoëtes echinospora</a></li>
+            <li><a href="#" onclick="showSpecies('Isoëtes_lacustris', this)">Isoëtes lacustris</a></li>
+            <li><a href="#" onclick="showSpecies('Juncus_gerardii', this)">Juncus gerardii</a></li>
+            <li><a href="#" onclick="showSpecies('Laminaria_digitata', this)">Laminaria digitata</a></li>
+            <li><a href="#" onclick="showSpecies('Laminaria_hyperborea', this)">Laminaria hyperborea</a></li>
+            <li><a href="#" onclick="showSpecies('Leathesia_marina', this)">Leathesia marina</a></li>
+            <li><a href="#" onclick="showSpecies('Lemna_minor', this)">Lemna minor</a></li>
+            <li><a href="#" onclick="showSpecies('Lemna_trisulca', this)">Lemna trisulca</a></li>
+            <li><a href="#" onclick="showSpecies('Limosella_aquatica', this)">Limosella aquatica</a></li>
+            <li><a href="#" onclick="showSpecies('Lithothamnion_glaciale', this)">Lithothamnion glaciale</a></li>
+            <li><a href="#" onclick="showSpecies('Lomentaria_clavellosa', this)">Lomentaria clavellosa</a></li>
+            <li><a href="#" onclick="showSpecies('Lomentaria_orcadensis', this)">Lomentaria orcadensis</a></li>
+            <li><a href="#" onclick="showSpecies('Melobesia_membranacea', this)">Melobesia membranacea</a></li>
+            <li><a href="#" onclick="showSpecies('Membranoptera_alata', this)">Membranoptera alata</a></li>
+            <li><a href="#" onclick="showSpecies('Mesogloia_vermiculata', this)">Mesogloia vermiculata</a></li>
+            <li><a href="#" onclick="showSpecies('Monostroma_balticum', this)">Monostroma balticum</a></li>
+            <li><a href="#" onclick="showSpecies('Myriophyllum_alternifloru', this)">Myriophyllum alternifloru</a></li>
+            <li><a href="#" onclick="showSpecies('Myriophyllum_sibiricum', this)">Myriophyllum sibiricum</a></li>
+            <li><a href="#" onclick="showSpecies('Myriophyllum_spicatum', this)">Myriophyllum spicatum</a></li>
+            <li><a href="#" onclick="showSpecies('Myriophyllum_verticillatu', this)">Myriophyllum verticillatu</a></li>
+            <li><a href="#" onclick="showSpecies('Najas_marina', this)">Najas marina</a></li>
+            <li><a href="#" onclick="showSpecies('Nemalion_multifidum', this)">Nemalion multifidum</a></li>
+            <li><a href="#" onclick="showSpecies('Nitella_flexilis', this)">Nitella flexilis</a></li>
+            <li><a href="#" onclick="showSpecies('Nitella_wahlbergiana', this)">Nitella wahlbergiana</a></li>
+            <li><a href="#" onclick="showSpecies('Nitellopsis_obtusa', this)">Nitellopsis obtusa</a></li>
+            <li><a href="#" onclick="showSpecies('Nuphar_lutea', this)">Nuphar lutea</a></li>
+            <li><a href="#" onclick="showSpecies('Nymphaea_alba', this)">Nymphaea alba</a></li>
+            <li><a href="#" onclick="showSpecies('Odonthalia_dentata', this)">Odonthalia dentata</a></li>
+            <li><a href="#" onclick="showSpecies('Palmaria_palmata', this)">Palmaria palmata</a></li>
+            <li><a href="#" onclick="showSpecies('Persicaria_foliosa', this)">Persicaria foliosa</a></li>
+            <li><a href="#" onclick="showSpecies('Phragmites_australis', this)">Phragmites australis</a></li>
+            <li><a href="#" onclick="showSpecies('Phycodrys_rubens', this)">Phycodrys rubens</a></li>
+            <li><a href="#" onclick="showSpecies('Phyllophora_crispa', this)">Phyllophora crispa</a></li>
+            <li><a href="#" onclick="showSpecies('Plumaria_plumosa', this)">Plumaria plumosa</a></li>
+            <li><a href="#" onclick="showSpecies('Polyides_rotunda', this)">Polyides rotunda</a></li>
+            <li><a href="#" onclick="showSpecies('Polysiphonia_elongata', this)">Polysiphonia elongata</a></li>
+            <li><a href="#" onclick="showSpecies('Polysiphonia_fibrillosa', this)">Polysiphonia fibrillosa</a></li>
+            <li><a href="#" onclick="showSpecies('Polysiphonia_stricta', this)">Polysiphonia stricta</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_berchtoldii', this)">Potamogeton berchtoldii</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_crispus', this)">Potamogeton crispus</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_friesii', this)">Potamogeton friesii</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_gramineus', this)">Potamogeton gramineus</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_natans', this)">Potamogeton natans</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_obtusifolius', this)">Potamogeton obtusifolius</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_perfoliatus', this)">Potamogeton perfoliatus</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_praelongus', this)">Potamogeton praelongus</a></li>
+            <li><a href="#" onclick="showSpecies('Potamogeton_pusillus', this)">Potamogeton pusillus</a></li>
+            <li><a href="#" onclick="showSpecies('Pseudolithoderma_extensum', this)">Pseudolithoderma extensum</a></li>
+            <li><a href="#" onclick="showSpecies('Pterothamnion_plumula', this)">Pterothamnion plumula</a></li>
+            <li><a href="#" onclick="showSpecies('Ptilota_gunneri', this)">Ptilota gunneri</a></li>
+            <li><a href="#" onclick="showSpecies('Ranunculus_aquatilis_var', this)">Ranunculus aquatilis var</a></li>
+            <li><a href="#" onclick="showSpecies('Ranunculus_peltatus', this)">Ranunculus peltatus</a></li>
+            <li><a href="#" onclick="showSpecies('Ranunculus_peltatus_subsp', this)">Ranunculus peltatus subsp</a></li>
+            <li><a href="#" onclick="showSpecies('Ranunculus_reptans', this)">Ranunculus reptans</a></li>
+            <li><a href="#" onclick="showSpecies('Rhizoclonium_riparium', this)">Rhizoclonium riparium</a></li>
+            <li><a href="#" onclick="showSpecies('Rhodochorton_purpureum', this)">Rhodochorton purpureum</a></li>
+            <li><a href="#" onclick="showSpecies('Rhodomela_confervoides', this)">Rhodomela confervoides</a></li>
+            <li><a href="#" onclick="showSpecies('Ruppia_cirrhosa', this)">Ruppia cirrhosa</a></li>
+            <li><a href="#" onclick="showSpecies('Ruppia_maritima', this)">Ruppia maritima</a></li>
+            <li><a href="#" onclick="showSpecies('Saccharina_latissima', this)">Saccharina latissima</a></li>
+            <li><a href="#" onclick="showSpecies('Sagittaria_natans', this)">Sagittaria natans</a></li>
+            <li><a href="#" onclick="showSpecies('Sagittaria_sagittifolia', this)">Sagittaria sagittifolia</a></li>
+            <li><a href="#" onclick="showSpecies('Sargassum_muticum', this)">Sargassum muticum</a></li>
+            <li><a href="#" onclick="showSpecies('Schoenoplectus_lacustris', this)">Schoenoplectus lacustris</a></li>
+            <li><a href="#" onclick="showSpecies('Scytosiphon_lomentaria', this)">Scytosiphon lomentaria</a></li>
+            <li><a href="#" onclick="showSpecies('Sparganium_emersum', this)">Sparganium emersum</a></li>
+            <li><a href="#" onclick="showSpecies('Spermatochnus_paradoxus', this)">Spermatochnus paradoxus</a></li>
+            <li><a href="#" onclick="showSpecies('Spermothamnion_repens', this)">Spermothamnion repens</a></li>
+            <li><a href="#" onclick="showSpecies('Sphacelaria_cirrosa', this)">Sphacelaria cirrosa</a></li>
+            <li><a href="#" onclick="showSpecies('Spirogyra', this)">Spirogyra</a></li>
+            <li><a href="#" onclick="showSpecies('Spongomorpha_aeruginosa', this)">Spongomorpha aeruginosa</a></li>
+            <li><a href="#" onclick="showSpecies('Stictyosiphon_tortilis', this)">Stictyosiphon tortilis</a></li>
+            <li><a href="#" onclick="showSpecies('Stuckenia_pectinata', this)">Stuckenia pectinata</a></li>
+            <li><a href="#" onclick="showSpecies('Stuckenia_vaginata', this)">Stuckenia vaginata</a></li>
+            <li><a href="#" onclick="showSpecies('Subularia_aquatica', this)">Subularia aquatica</a></li>
+            <li><a href="#" onclick="showSpecies('Tolypella_nidifica', this)">Tolypella nidifica</a></li>
+            <li><a href="#" onclick="showSpecies('Triglochin_maritima', this)">Triglochin maritima</a></li>
+            <li><a href="#" onclick="showSpecies('Typha_angustifolia', this)">Typha angustifolia</a></li>
+            <li><a href="#" onclick="showSpecies('Typha_latifolia', this)">Typha latifolia</a></li>
+            <li><a href="#" onclick="showSpecies('Ulothrix_zonata', this)">Ulothrix zonata</a></li>
+            <li><a href="#" onclick="showSpecies('Ulva_clathrata', this)">Ulva clathrata</a></li>
+            <li><a href="#" onclick="showSpecies('Ulva_compressa', this)">Ulva compressa</a></li>
+            <li><a href="#" onclick="showSpecies('Ulva_intestinalis', this)">Ulva intestinalis</a></li>
+            <li><a href="#" onclick="showSpecies('Ulva_lactuca', this)">Ulva lactuca</a></li>
+            <li><a href="#" onclick="showSpecies('Ulva_linza', this)">Ulva linza</a></li>
+            <li><a href="#" onclick="showSpecies('Ulva_prolifera', this)">Ulva prolifera</a></li>
+            <li><a href="#" onclick="showSpecies('Urospora_penicilliformis', this)">Urospora penicilliformis</a></li>
+            <li><a href="#" onclick="showSpecies('Utricularia_vulgaris', this)">Utricularia vulgaris</a></li>
+            <li><a href="#" onclick="showSpecies('Vaucheria', this)">Vaucheria</a></li>
+            <li><a href="#" onclick="showSpecies('Vertebrata_byssoides', this)">Vertebrata byssoides</a></li>
+            <li><a href="#" onclick="showSpecies('Vertebrata_fucoides', this)">Vertebrata fucoides</a></li>
+            <li><a href="#" onclick="showSpecies('Zannichellia_major', this)">Zannichellia major</a></li>
+            <li><a href="#" onclick="showSpecies('Zannichellia_palustris', this)">Zannichellia palustris</a></li>
+            <li><a href="#" onclick="showSpecies('Zostera_marina', this)">Zostera marina</a></li>
+            <li><a href="#" onclick="showSpecies('Zygnema', this)">Zygnema</a></li>
+
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div id="report-placeholder" class="placeholder">
+            Välj en art i listan till vänster för att visa rapporten.
+        </div>
+        <div class="report-container" id="report-iframe-container" style="display: none;">
+             <iframe id="report-iframe" src="" title="Artrapport"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function showSpecies(speciesId, clickedElement) {
+            // Visa iframe-containern och göm platshållaren
+            document.getElementById('report-placeholder').style.display = 'none';
+            document.getElementById('report-iframe-container').style.display = 'block';
+
+            // Sätt källan för iframen
+            const reportPath = `reports/ProtectBaltic_ModelReport_${speciesId}.html`;
+            document.getElementById('report-iframe').src = reportPath;
+
+            // Hantera 'active' klassen för den klickade länken
+            const links = document.querySelectorAll('#species-list a');
+            links.forEach(link => link.classList.remove('active'));
+            clickedElement.classList.add('active');
+        }
+    </script>
+</body>
+</html>
